@@ -1,14 +1,12 @@
 import { Configuration, OpenAIApi } from "openai";
 
 const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: "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",
 });
 
 const openai = new OpenAIApi(configuration);
 
 export default async function (req, res) {
-  
-  console.log(11111);
 
   if (!configuration.apiKey) {
     res.status(500).json({
@@ -30,7 +28,6 @@ export default async function (req, res) {
   }
 
   try {
-    console.log(22222);
     const completion = await openai.createCompletion({
       model: "text-davinci-003",
       prompt: generatePrompt(message),
