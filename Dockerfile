@@ -14,7 +14,7 @@ COPY ["./", "/app"]
 WORKDIR /app
 
 # 安装应用程序的依赖
-RUN npm i -g next
+RUN npm install
 
 # 设置环境变量
 ENV NODE_ENV production
