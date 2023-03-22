@@ -7,9 +7,13 @@ export default function Chat() {
     { content: 'Hello, how can I help you?', sender: 'ChatGPT' }
   ]);
   const [inputValue, setInputValue] = useState('');
+  const [inputKey, setInputKey] = useState('');
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
+  };
+  const handleInputKeyChange = (event) => {
+    setInputKey(event.target.value);
   };
 
   const handleSendButtonClick = () => {
@@ -29,7 +33,7 @@ export default function Chat() {
       const response = await fetch("/api/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message }),
+        body: JSON.stringify({ message, inputKey }),
       });
 
       const data = await response.json();
@@ -57,6 +61,14 @@ export default function Chat() {
       </Head>
       <div className={styles.chatHeader}>
         <h1>ChatGPT</h1>
+        <div>
+          <input
+            type="text"
+            placeholder="input apiKey..."
+            value={inputKey}
+            onChange={handleInputKeyChange}
+          />
+        </div>
       </div>
       <div className={styles.chatBody}>
         {messages.map((message, index) => (

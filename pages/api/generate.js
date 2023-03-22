@@ -1,13 +1,11 @@
 import { Configuration, OpenAIApi } from "openai";
 
-const configuration = new Configuration({
-  apiKey: "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",
-});
-
-const openai = new OpenAIApi(configuration);
-
 export default async function (req, res) {
-
+  const configuration = new Configuration({
+    apiKey: req.body.inputKey,
+  });
+  const openai = new OpenAIApi(configuration);
+  
   if (!configuration.apiKey) {
     res.status(500).json({
       error: {
