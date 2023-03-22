@@ -14,13 +14,16 @@ COPY package.json package-lock.json /app/
 RUN yarn install --production
 
 # 复制应用程序的代码到工作目录
-COPY . /app
+COPY ./
 
 # 设置环境变量
 ENV NODE_ENV production
 
 # 暴露端口
 EXPOSE 3000
+
+# 启动应用程序
+CMD ["yarn", "build"]
 
 # 启动应用程序
 CMD ["yarn", "start"]
