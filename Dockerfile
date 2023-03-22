@@ -5,16 +5,16 @@ FROM node:14-alpine
 RUN apk add --no-cache python3 make g++
 
 # 设置工作目录
-WORKDIR /app
+WORKDIR ./
 
 # 将应用程序的依赖复制到工作目录
-COPY package.json package-lock.json /app/
+#COPY package.json package-lock.json /app/
 
 # 安装应用程序的依赖
 RUN yarn install --production
 
 # 复制应用程序的代码到工作目录
-COPY ./
+#COPY ./app
 
 # 设置环境变量
 ENV NODE_ENV production
